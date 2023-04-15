@@ -1,0 +1,14 @@
+
+{% extends 'base.html' %}
+
+{% for photo in photos %}
+    <div>
+        <img src="{{ photo.image.url }}" alt="{{ photo.image.name }}">
+        {% if photo.pk %}
+            <form action="{% url 'delete_photo' photo.pk %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger" value="刪除" />
+            </form>
+        {% endif %}
+    </div>
+{% endfor %}
